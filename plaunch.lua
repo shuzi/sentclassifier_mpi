@@ -210,6 +210,9 @@ else
       print('[client] rank '.. tostring(rank) .. ' use gpu ' .. tostring(gpuid) .. " on " .. tostring(io.popen('hostname -s'):read()))
       torch.setdefaulttensortype('torch.CudaTensor')
       opt.gpuid = gpuid
+   elseif not oncuda and role == 'pt' then
+      print('[client] rank '.. tostring(rank) .. ' use cpu ' .. " on " .. tostring(io.popen('hostname -s'):read()))
+      torch.setdefaulttensortype('torch.FloatTensor')
    else
       print('[tester] rank '.. tostring(rank) .. ' use cpu ' .. " on " .. tostring(io.popen('hostname -s'):read()))
       torch.setdefaulttensortype('torch.FloatTensor')
