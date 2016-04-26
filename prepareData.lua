@@ -273,4 +273,8 @@ assert(trainFileHandle:close())
 assert(validFileHandle:close())
 assert(testFileHandle:close())
 assert(embeddingFileHandle:close())
-
+collectgarbage()
+collectgarbage()
+if conf.rank == 0 then
+   print("At the end of prepareData, amount of memory currently used in Kilobytes:  ", collectgarbage("count"))
+end

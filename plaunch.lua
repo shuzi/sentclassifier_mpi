@@ -12,12 +12,7 @@ mpiT.tag_ps_recv_stop = 6
 mpiT.tag_ps_recv_param_tail = 7
 mpiT.tag_ps_recv_grad_tail = 8
 
-dofile('pserver.lua')
-dofile('pclient.lua')
-dofile('optim-downpour.lua')
-dofile('optim-eamsgd.lua')
-dofile('optim-rmsprop.lua')
-
+dofile('init.lua')
 
 cmd = torch.CmdLine('_')
 cmd:text()
@@ -27,6 +22,20 @@ cmd:option('-optimization', 'downpour', 'optimization method: downpour | eamsgd 
 cmd:option('-learningRate', 1e-2, 'learning rate at t=0')
 cmd:option('-batchSize', 1, 'training mini-batch size')
 cmd:option('-batchSizeTest', 1, 'test mini-batch size')
+cmd:option('-lrAdagrad', 1e-3, 'learning rate for adagrad')
+cmd:option('-lrDecayAdagrad', 0.000001, 'learning rate decay for adagrad')
+cmd:option('-epsilonAdagrad', 1e-10, 'epsilon for adagrad')
+cmd:option('-modeAdagrad', 'global', 'mode for distributed adagrad, currently only global')
+cmd:option('-rhoAdadelta', 0.9, 'rho for adadelta')
+cmd:option('-lrAdadelta', 1, 'lr for adadelta')
+cmd:option('-epsilonAdadelta', 1e-6, 'epsilon for adadelta')
+cmd:option('-modeAdadelta', 'global', 'mode for distributed adadelta, currently only global')
+cmd:option('-lrAdam', 1e-3, 'learning rate for adam')
+cmd:option('-beta1Adam', 0.9, 'beta1 for adam')
+cmd:option('-beta2Adam', 0.999, 'beta2 for adam')
+cmd:option('-epsilonAdam', 1e-8, 'epsilon for adam')
+cmd:option('-stepDivAdam', 72, 'step divide for adam')
+cmd:option('-modeAdam', 'global', 'mode for adam, currently only global')
 cmd:option('-gradClip', 0.5, 'boundary for gradient clip')
 cmd:option('-weightDecay', 0.000001, 'weight decay')
 cmd:option('-decayRMSProp', 0.95, 'decay for rmsprop')
