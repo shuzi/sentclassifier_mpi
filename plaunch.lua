@@ -76,6 +76,7 @@ cmd:option('-testerfirst', false, 'rank 0 is the tester')
 cmd:option('-testerlast', false, 'last rank is the tester')
 cmd:option('-masterFreq', 2, 'this parameter control the ratio of master and client')
 cmd:option('-maxrank', 16, 'max rank used')
+cmd:option('-singlemode', false, 'single mode, server recv params instead of grads')
 cmd:text()
 opt = cmd:parse(arg or {})
 
