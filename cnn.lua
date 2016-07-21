@@ -329,7 +329,7 @@ if opt.validMode == 'additionalTester' and conf.tranks[conf.rank] == true then
                 sys.toc()+opt.prevtime), parameters)
       end
       
-      if countsame > 5 then
+      if countsame > 15 then
          break
       end
    end
